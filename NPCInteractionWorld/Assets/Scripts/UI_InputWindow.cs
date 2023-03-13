@@ -11,24 +11,27 @@ public class UI_InputWindow : MonoBehaviour
 
     public void Start()
     {
+        // Get the PlayerInput component of the player game object
         playerInput = player.GetComponent<PlayerInput>();
-        Debug.Log(playerInput);
-        Debug.Log(player);
+
+        // Hide the input window when the script starts
         Hide();
     }
 
+    // Show the input window and disable the player input
     public void Show()
     {
         gameObject.SetActive(true);
-        playerInput.enabled=false;
-        Cursor.visible=true;
+        playerInput.enabled = false;
+        Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
 
+    // Hide the input window and enable the player input
     public void Hide()
     {
         gameObject.SetActive(false);
-        playerInput.enabled=true;
+        playerInput.enabled = true;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
     }
