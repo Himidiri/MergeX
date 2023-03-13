@@ -10,7 +10,7 @@ public class NPCIntractable : MonoBehaviour
 
     public void Interact()
         {
-            ChatBubble.Create(transform.transform, new Vector3(-0.87f, 1.056f, 0f), ChatBubble.IconType.Happy, "Hello World !");
+            ChatBubble.Create(transform.transform, new Vector3(-0.87f, 1.056f, 0f), Quaternion.Euler(0f, 180f, 0f), ChatBubble.IconType.Happy, "Hello World !");
 
             Debug.Log("Interact!");
             
