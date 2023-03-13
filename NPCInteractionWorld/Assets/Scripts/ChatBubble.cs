@@ -20,7 +20,7 @@ public class ChatBubble : MonoBehaviour
 
         chatBubbleTransform.GetComponent<ChatBubble>().Setup(iconType, text);
 
-        Destroy(chatBubbleTransform.gameObject, 6f);
+        // Destroy(chatBubbleTransform.gameObject, 6f);
     }
 
     public enum IconType

@@ -18,7 +18,7 @@ public class PlayerInputsController : MonoBehaviour
 
     public void userInputs()
     {
-        ChatBubble.Create(transform.transform, new Vector3(6f, 1f, 0f), Quaternion.Euler(0f, -57.659f, 0f) , ChatBubble.IconType.Happy, inputField.text);
+        ChatBubble.Create(transform.transform, new Vector3(-0.6f, 2.01f, 0.08f), Quaternion.Euler(0f, 180f, 0f) , ChatBubble.IconType.Happy, inputField.text);
     }
 
     public void cancelInputs()
