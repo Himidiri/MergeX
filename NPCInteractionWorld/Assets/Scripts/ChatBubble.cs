@@ -5,15 +5,15 @@ using TMPro;
 
 public class ChatBubble : MonoBehaviour
 {
-    public static void Create(Transform parent, Vector3 localPosition, IconType iconType, string text)
+    public static void Create(Transform parent, Vector3 localPosition, Quaternion rotation, IconType iconType, string text)
     {
         Transform chatBubbleTransform = Instantiate(NPCInteractionWorldAssets.i.ChatBubble, parent);
 
         // Set the local position
-        chatBubbleTransform.localPosition = new Vector3(-0.87f, 1.056f, 0f);
+        chatBubbleTransform.localPosition = localPosition;
 
         // Set the rotation
-        chatBubbleTransform.rotation = Quaternion.Euler(0f, 180f, 0f);
+        chatBubbleTransform.rotation = rotation;
 
         // Set the scale
         chatBubbleTransform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
