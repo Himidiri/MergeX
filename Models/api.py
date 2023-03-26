@@ -1,33 +1,41 @@
-from flask import Flask, jsonify, request
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+from flask import Flask, request
+from transformers import pipeline, AutoModelForSeq2SeqLM, AutoTokenizer
 import re
 
-max_source_length = 256
-max_target_length = 128
-
+# Load the T5 model and tokenizer
 model = AutoModelForSeq2SeqLM.from_pretrained("amaydle/mergex")
 tokenizer = AutoTokenizer.from_pretrained("google/flan-t5-base")
+
+# Define the pipeline with the T5 model and tokenizer
+t5_pipeline = pipeline(
+    "text2text-generation",
+    model=model,
+    tokenizer=tokenizer
+)
 
 
 app = Flask(__name__)
 
 @app.route('/', methods=['POST'])
 def predict():
-    content = request.get_json(silent=True)
+    try:
+        content = request.get_json(silent=True)
 
-    input_text = f"Biography: {content['bio']}\n\nQuestion: {content['question']}"
+        input_text = f"Biography: {content['bio']}\n\nQuestion: {content['question']}"
 
-    inputs = tokenizer(input_text, max_length=max_source_length, truncation=True, return_tensors="pt")
-    output = model.generate(**inputs, num_beams=8, do_sample=True, min_length=10, max_length=max_target_length)
-    decoded_output = tokenizer.batch_decode(output, skip_special_tokens=True)[0]
-    regex_pattern = r"Emotion:\s*(\w+)\s+Answer:\s*(.+)"
-    matches = re.search(regex_pattern, decoded_output)
+        output_text = t5_pipeline(input_text, max_length=128)[0]["generated_text"]
 
-    if matches:
-        emotion = matches.group(1)
-        answer = matches.group(2)
-        return jsonify({"emotion": emotion.lower(), "answer": answer})
-    else:
-        return jsonify({"emotion": "sad", "answer": "Sorry, I didn't understand"})
+        regex_pattern = r"Emotion:\s*(\w+)\s+Answer:\s*(.+)"
+        matches = re.search(regex_pattern, output_text)
 
-app.run(host="0.0.0.0")
+        if matches:
+            emotion = matches.group(1)
+            answer = matches.group(2)
+            return {"emotion": emotion.lower(), "answer": answer}
+        else:
+            return {"emotion": "sad", "answer": "Sorry, I didn't understand"}
+    except Exception:
+        return {"emotion": "sad", "answer": "Sorry, Something is wrong with my brain"}, 500
+
+
+app.run(host="0.0.0.0", port=5000)
