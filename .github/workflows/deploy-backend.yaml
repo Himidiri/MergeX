@@ -1,4 +1,4 @@
-name: Deploy Build
+name: Backend Deploy
 
 on:
   workflow_dispatch: {}
@@ -9,7 +9,7 @@ on:
       - 'Backend/**'
 
 jobs:
-  job_id:
+  deploy:
     runs-on: 'ubuntu-latest'
     permissions:
       contents: 'read'
@@ -21,7 +21,7 @@ jobs:
     - id: 'auth'
       uses: 'google-github-actions/auth@v1'
       with:
-        workload_identity_provider: 'principalSet://iam.googleapis.com/projects/27981201718/locations/global/workloadIdentityPools/github'
+        workload_identity_provider: 'projects/27981201718/locations/global/workloadIdentityPools/gh-pool/providers/gh-provider'
         service_account: 'github-actions@mergex-382319.iam.gserviceaccount.com'
 
     - id: 'deploy'
