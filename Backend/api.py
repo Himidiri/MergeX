@@ -9,6 +9,9 @@ app = Flask(__name__)
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 mongo = PyMongo(app)
 
+# Set up CORS to allow only POST requests from a specific domain
+cors = CORS(app, resources={r"/signup": {"origins": os.getenv("ALLOWED_ORIGIN")}}, methods=["POST"])
+
 # Define a sign-up route that creates a new user in the database
 @app.route("/signup", methods=["POST"])
 def signup():
@@ -54,4 +57,4 @@ def login():
 
 # Run the app in debug mode if it's the main module
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True,host="0.0.0.0")

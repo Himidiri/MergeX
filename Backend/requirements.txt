@@ -25,6 +25,7 @@ dnspython==2.3.0
 executing==1.2.0
 fastjsonschema==2.16.3
 Flask==2.2.3
+Flask-Cors==3.0.10
 Flask-PyMongo==2.3.0
 fonttools==4.39.0
 fqdn==1.5.1
