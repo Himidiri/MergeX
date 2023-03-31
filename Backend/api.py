@@ -55,6 +55,10 @@ def login():
         # Return an error message if the email or password is invalid
         return jsonify({"message": "Invalid email or password."}), 401
 
+@app.route("/healthz", methods=["GET"])
+def healthz():
+    return jsonify({"success": True}), 200
+
 # Run the app in debug mode if it's the main module
 if __name__ == "__main__":
     app.run(debug=True,host="0.0.0.0")
