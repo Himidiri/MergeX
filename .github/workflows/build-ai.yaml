@@ -15,7 +15,6 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
