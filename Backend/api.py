@@ -1,16 +1,17 @@
 # Import required libraries and modules
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
+from flask_cors import CORS
 
 # Create a Flask app and set MongoDB URI in configuration
-app = Flask(__name__)
+app = Flask(__name__, static_folder='build')
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 mongo = PyMongo(app)
 
-# Set up CORS to allow only POST requests from a specific domain
-cors = CORS(app, resources={r"/signup": {"origins": os.getenv("ALLOWED_ORIGIN")}}, methods=["POST"])
+# Set up CORS to allow only requests from a specific domain
+cors = CORS(app, resources={r"/*": {"origins": os.getenv("ALLOWED_ORIGIN")}}, methods=["POST"])
 
 # Define a sign-up route that creates a new user in the database
 @app.route("/signup", methods=["POST"])
@@ -55,10 +56,20 @@ def login():
         # Return an error message if the email or password is invalid
         return jsonify({"message": "Invalid email or password."}), 401
 
+# Health Check
 @app.route("/healthz", methods=["GET"])
 def healthz():
     return jsonify({"success": True}), 200
 
+# Serve React App
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve(path):
+    if path != "" and os.path.exists(app.static_folder + '/' + path):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, 'index.html')
+
 # Run the app in debug mode if it's the main module
-if __name__ == "__main__":
-    app.run(debug=True,host="0.0.0.0")
+if __name__ == '__main__':
+    app.run(use_reloader=True, port=5000, threaded=True, host="0.0.0.0")

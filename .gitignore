@@ -142,3 +142,8 @@ PackageBackups/
 
 # UWP builds
 /UWP/*
+
+
+# React
+node_modules/
+build/

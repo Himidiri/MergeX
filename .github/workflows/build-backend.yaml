@@ -7,6 +7,7 @@ on:
       - main
     paths:
       - 'Backend/**'
+      - 'UI/**'
 
 env:
   IMAGE_NAME: ghcr.io/himidiri/mergex/backend
@@ -18,14 +19,19 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: Backend
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm --prefix=UI install
+      - run: npm --prefix=UI run build
+      - run: cp -avr UI/build Backend/
       - uses: docker/login-action@v1
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - run: docker build -t $IMAGE_NAME:latest -f Dockerfile .
+      - run: docker build -t $IMAGE_NAME:latest -f Backend/Dockerfile Backend/
       - run: docker tag $IMAGE_NAME:latest $IMAGE_NAME:commit-${GITHUB_SHA:0:8}
       - run: docker push $IMAGE_NAME --all-tags
