@@ -3,7 +3,7 @@ from transformers import pipeline, AutoModelForSeq2SeqLM, AutoTokenizer
 import re
 
 # Load the T5 model and tokenizer
-model = AutoModelForSeq2SeqLM.from_pretrained("amaydle/mergex")
+model = AutoModelForSeq2SeqLM.from_pretrained("amaydle/mergex-v2")
 tokenizer = AutoTokenizer.from_pretrained("google/flan-t5-base")
 
 # Define the pipeline with the T5 model and tokenizer
