@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class ChatWindow : MonoBehaviour
 {
     private PlayerInput playerInput;
-    public ScrollRect scrollRect;
 
     public GameObject player;
 
