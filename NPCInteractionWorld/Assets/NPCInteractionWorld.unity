@@ -477,6 +477,14 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6258693773684494762, guid: a492635790381d1479b08b4b5189167a, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7572161583216373875}
+    - target: {fileID: 6258693773684494762, guid: a492635790381d1479b08b4b5189167a, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: userInputs
+      objectReference: {fileID: 0}
     - target: {fileID: 6258693774105938155, guid: a492635790381d1479b08b4b5189167a, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -565,6 +573,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChatCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6258693774466405189, guid: a492635790381d1479b08b4b5189167a, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 7088217744772491979}
+    - target: {fileID: 6258693774471665794, guid: a492635790381d1479b08b4b5189167a, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7572161583216373875}
+    - target: {fileID: 6258693774471665794, guid: a492635790381d1479b08b4b5189167a, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: cancelInputs
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a492635790381d1479b08b4b5189167a, type: 3}
 --- !u!224 &402928745 stripped
@@ -619,11 +639,6 @@ MonoBehaviour:
 --- !u!1 &402928750 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6258693774466405191, guid: a492635790381d1479b08b4b5189167a, type: 3}
-  m_PrefabInstance: {fileID: 402928744}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &402928751 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6258693774105938159, guid: a492635790381d1479b08b4b5189167a, type: 3}
   m_PrefabInstance: {fileID: 402928744}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &407025546
@@ -1043,7 +1058,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4150b198d829d3e4fbb0964751ade829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chatWindow: {fileID: 402928751}
+  chatWindow: {fileID: 402928750}
 --- !u!1 &629821476
 GameObject:
   m_ObjectHideFlags: 0
@@ -3375,7 +3390,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce5860b6ccf8f0d4db839e953c57a070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 7088217744772491979}
 --- !u!1001 &1889875715
 PrefabInstance:
   m_ObjectHideFlags: 0
