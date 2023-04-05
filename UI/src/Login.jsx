@@ -40,7 +40,7 @@ export const Login = ({ setLoginView, setLoggedIn }) => {
     setLoading(true);
     try {
       const response = await fetch(
-        'https://backend-ghumo23ctq-as.a.run.app/login/',
+        'https://backend-ghumo23ctq-as.a.run.app/api/login/',
         {
           method: 'POST',
           headers: {
