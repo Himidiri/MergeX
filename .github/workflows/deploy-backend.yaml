@@ -7,6 +7,11 @@ on:
       - main
     paths:
       - 'Backend/**'
+      - 'UI/**'
+
+env:
+  IMAGE_NAME: asia-southeast1-docker.pkg.dev/mergex-382319/mergex/backend
+  DOCKER_BUILDKIT: 1
 
 jobs:
   deploy:
@@ -16,19 +21,40 @@ jobs:
       id-token: 'write'
 
     steps:
-    - uses: 'actions/checkout@v3'
+    - uses: actions/checkout@v3
 
     - id: 'auth'
-      uses: 'google-github-actions/auth@v1'
+      uses: google-github-actions/auth@v1
       with:
-        workload_identity_provider: 'projects/27981201718/locations/global/workloadIdentityPools/gh-pool/providers/gh-provider'
-        service_account: 'github-actions@mergex-382319.iam.gserviceaccount.com'
+        token_format: access_token
+        workload_identity_provider: projects/27981201718/locations/global/workloadIdentityPools/my-pool/providers/my-provider
+        service_account: github-actions@mergex-382319.iam.gserviceaccount.com
+    
+    # This example uses the docker login action
+    - uses: 'docker/login-action@v1'
+      with:
+        registry: 'asia-southeast1-docker.pkg.dev' # or REGION-docker.pkg.dev
+        username: 'oauth2accesstoken'
+        password: '${{ steps.auth.outputs.access_token }}'
+        
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    - run: npm --prefix=UI install
+    - run: npm --prefix=UI run build
+    - run: cp -avr UI/build Backend/
 
-    - id: 'deploy'
-      uses: 'google-github-actions/deploy-cloud-functions@v1'
+    - run: docker build -t $IMAGE_NAME:latest -f Backend/Dockerfile Backend/
+    - run: docker tag $IMAGE_NAME:latest $IMAGE_NAME:commit-${{ github.sha }}
+    - run: docker push $IMAGE_NAME --all-tags
+        
+    - name: Deploy to Cloud Run
+      id: deploy
+      uses: google-github-actions/deploy-cloudrun@v1
       with:
-        name: 'mergex-backend'
-        runtime: 'python39'
+        service: 'backend'
+        region: 'asia-southeast1'
+        image: ${{ env.IMAGE_NAME }}:commit-${{ github.sha }}
 
     # Example of using the output
     - id: 'test'
