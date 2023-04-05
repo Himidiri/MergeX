@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using TMPro;
 
 public class ChatWindow : MonoBehaviour
 {
     private PlayerInput playerInput;
+    public ScrollRect scrollRect;
 
     public GameObject player;
+
+    public GameObject chatObjectPrefab;
+    public TMP_Text playerTextPrefab;
+    public TMP_Text npcTextPrefab;
+    public Transform content;
+    public GameObject lastChatObject;
 
     public void Start()
     {
@@ -34,6 +42,6 @@ public class ChatWindow : MonoBehaviour
         gameObject.SetActive(false);
         playerInput.enabled = true;
         Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }
