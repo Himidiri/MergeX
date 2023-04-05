@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class UI_InputWindow : MonoBehaviour
 {
-   /* private PlayerInput playerInput;
+    private PlayerInput playerInput;
 
     public GameObject player;
 
@@ -35,5 +35,4 @@ public class UI_InputWindow : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
     }
-   */
 }
