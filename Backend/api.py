@@ -11,10 +11,19 @@ app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 mongo = PyMongo(app)
 
 # Set up CORS to allow only requests from a specific domain
-cors = CORS(app, resources={r"/*": {"origins": os.getenv("ALLOWED_ORIGIN")}}, methods=["POST"])
+cors = CORS(app, resources={r"/api/*": {"origins": os.getenv("ALLOWED_ORIGIN")}}, methods=["POST"])
+
+# Serve React App
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve(path):
+    if path != "" and os.path.exists(app.static_folder + '/' + path):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, 'index.html')
 
 # Define a sign-up route that creates a new user in the database
-@app.route("/signup", methods=["POST"])
+@app.route("/api/signup/", methods=["POST"])
 def signup():
     # Extract user data from request body
     name = request.json.get("name")
@@ -35,7 +44,7 @@ def signup():
     return jsonify({"message": "User created successfully."})
 
 # Define a log-in route that authenticates the user and returns a token if successful
-@app.route("/login", methods=["POST"])
+@app.route("/api/login/", methods=["POST"])
 def login():
     # Extract user credentials from request body
     email = request.json.get("email")
@@ -57,18 +66,9 @@ def login():
         return jsonify({"message": "Invalid email or password."}), 401
 
 # Health Check
-@app.route("/healthz", methods=["GET"])
+@app.route("/healthz/", methods=["GET"])
 def healthz():
     return jsonify({"success": True}), 200
-
-# Serve React App
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
-def serve(path):
-    if path != "" and os.path.exists(app.static_folder + '/' + path):
-        return send_from_directory(app.static_folder, path)
-    else:
-        return send_from_directory(app.static_folder, 'index.html')
 
 # Run the app in debug mode if it's the main module
 if __name__ == '__main__':

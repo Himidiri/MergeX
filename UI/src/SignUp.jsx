@@ -46,7 +46,7 @@ export const SignUp = ({ setLoginView, setLoggedIn }) => {
     setLoading(true);
     try {
       const response = await fetch(
-        'https://backend-ghumo23ctq-as.a.run.app/signup/',
+        'https://backend-ghumo23ctq-as.a.run.app/api/signup/',
         {
           method: 'POST',
           headers: {
