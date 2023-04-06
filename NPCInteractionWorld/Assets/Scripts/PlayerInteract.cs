@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
+    public NPCResponse currentNPC;
 
     private void Update()
     {
@@ -21,6 +22,8 @@ public class PlayerInteract : MonoBehaviour
                 {
                     // Call the Interact() function of the NPCIntractable component
                     npcInteractable.Interact();
+
+                    // currentNPC = npcInteractable;
                 }
             }
         }

@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class NPCIntractable : MonoBehaviour
 {
-    private UI_InputWindow inputWindow_; // Reference to the UI_InputWindow script
-
-    public GameObject inputWindow; // Reference to the input window object
+    private ChatWindow chatWindow_; // Reference to the ChatWindow script
+    private NPCResponse npcResponse;
+    public GameObject chatWindow; // Reference to the chat window object
 
     public void Interact()
     {
-        ChatBubble.Create(transform.transform, new Vector3(-0.87f, 1.056f, 0f), Quaternion.Euler(0f, 180f, 0f), ChatBubble.IconType.Happy, "Hello"); // Create a chat bubble with the specified properties
-
+        if (chatWindow_.isOpened){
+            return;
+        }
         Debug.Log("Interact!"); // Log a message to the console
 
-        inputWindow_.Show(); // Show the input window
+        chatWindow_.Show(npcResponse); // Show the chat window
     }
 
     public void Start()
     {
-        inputWindow_ = inputWindow.GetComponent<UI_InputWindow>(); // Get the UI_InputWindow component
+        chatWindow_ = chatWindow.GetComponent<ChatWindow>(); // Get the ChatWindow component
+        npcResponse = GetComponent<NPCResponse>();
     }
 }

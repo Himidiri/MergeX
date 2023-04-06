@@ -35,4 +35,5 @@ public class UI_InputWindow : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
     }
+   
 }
