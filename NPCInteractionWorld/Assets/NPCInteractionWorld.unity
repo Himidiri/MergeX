@@ -721,7 +721,13 @@ MonoBehaviour:
   name: Kitana
   welcomeMessage: Hello, I'm Kitana! How can I help you?
   loading: 0
-  predefinedQuestions: []
+  predefineQuestion:
+  - question: What is your weapon of choice?
+    answer: My steel fans are lethal
+  - question: Do you have any friends?
+    answer: I have allies, not friends.
+  - question: Can you show me your moves?
+    answer: I don't show off easily.
 --- !u!1001 &356426300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -800,6 +806,7 @@ MonoBehaviour:
   player: {fileID: 7088217744772491979}
   inputField: {fileID: 6258693774645984930}
   chatLog: {fileID: 1947923836}
+  dropdown: {fileID: 879663007}
 --- !u!1001 &407025546
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1096,7 +1103,13 @@ MonoBehaviour:
   name: Naruto Uzumaki
   welcomeMessage: Hello, I'm Naruto Uzumaki! How can I help you?
   loading: 0
-  predefinedQuestions: []
+  predefineQuestion:
+  - question: What is your favorite food?
+    answer: I love ramen more than anything!
+  - question: What is your favorite color?
+    answer: Orange, just like my jumpsuit!
+  - question: What is your biggest fear?
+    answer: Losing the people I love.
 --- !u!1 &630353046
 GameObject:
   m_ObjectHideFlags: 0
@@ -1241,7 +1254,13 @@ MonoBehaviour:
   name: Hermione Granger
   welcomeMessage: Hello, I'm Hermione Granger! How can I help you?
   loading: 0
-  predefinedQuestions: []
+  predefineQuestion:
+  - question: Can you do magic?
+    answer: Of course, I am a witch after all.
+  - question: Can you play quidditch?
+    answer: No, I never was much of a fan of Quidditch.
+  - question: Who is your best friend?
+    answer: Of couse it's Harry and Ron
 --- !u!1 &702361246
 GameObject:
   m_ObjectHideFlags: 0
@@ -1780,10 +1799,10 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 630353053}
-        m_TargetAssemblyTypeName: NPCResponse, Assembly-CSharp
-        m_MethodName: PredefinedUserInputs
-        m_Mode: 0
+      - m_Target: {fileID: 402928755}
+        m_TargetAssemblyTypeName: ChatWindow, Assembly-CSharp
+        m_MethodName: SelectedText
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2497,7 +2516,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000017166138}
+  m_AnchoredPosition: {x: 0, y: 0.000015258789}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1001 &1564184883
@@ -2712,7 +2731,13 @@ MonoBehaviour:
   name: Merlin
   welcomeMessage: Hello, I'm Merlin! How can I help you?
   loading: 0
-  predefinedQuestions: []
+  predefineQuestion:
+  - question: What do you know about magic?
+    answer: ' I have a deep understanding of magic.  Emotion: Sincerity'
+  - question: How old are you?
+    answer: 'I have lived for centuries.  Emotion: Wisdom'
+  - question: Can you show me a magic trick?
+    answer: 'I am always happy to share my knowledge. '
 --- !u!4 &1623508076 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}

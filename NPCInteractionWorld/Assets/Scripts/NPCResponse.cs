@@ -17,8 +17,8 @@ public class NPCResponse : MonoBehaviour
     public string name;
     public string welcomeMessage;
     public bool loading = false;
-    //Predefine
-    public List<string> predefinedQuestions;
+    // public Dictionary<string, string> predefineQuestion = new Dictionary<string, string>();
+    public List<PredefineQuestion> predefineQuestion;
 
 
     public IEnumerator GenerateResponse(string query)
@@ -49,16 +49,6 @@ public class NPCResponse : MonoBehaviour
         request.Dispose();
         loading = false;
     }
-
-    //Method
-    public void PredefinedUserInputs(int index)
-    {
-        if (index >= 0 && index < predefinedQuestions.Count)
-        {
-            string selectedQuestion = predefinedQuestions[index];
-            StartCoroutine(GenerateResponse(selectedQuestion));
-        }
-    }
 }
 
 [Serializable]
@@ -68,3 +58,8 @@ public class APIReponse
     public string emotion = "Sorry, Something is wrong with my brain";
 }
 
+[Serializable]
+public class PredefineQuestion {
+    public string question;
+    public string answer;
+}
