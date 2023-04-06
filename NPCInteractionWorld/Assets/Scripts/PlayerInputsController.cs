@@ -24,62 +24,11 @@ public class PlayerInputsController : MonoBehaviour
     public void Start()
     {
         chatWindow_ = chatWindow.GetComponent<ChatWindow>();
-
-        // Set up the NPC's default response
-        npcResponse = string.Format("Hello, I'm {0}. {1}", npcName, "Ask me anything about magic and I will do my best to help.");
-        defaultNpcResponseText.text = npcResponse;
-    }
-
-    public void userInputs()
-    {
-        // Instantiate the player's message prefab
-        GameObject playerMessageObject = Instantiate(playerTextPrefab.gameObject, content);
-        TMP_Text playerMessage = playerMessageObject.GetComponent<TMP_Text>();
-
-        // Set the player's message text
-        string playerMessageText = string.Format("<color=green>You: </color>{0}", inputField.text);
-        playerMessage.text = playerMessageText;
-
-        // Set the player message's position to be below the last player message
-        if (lastPlayerMessage != null)
-        {
-            playerMessageObject.transform.SetSiblingIndex(lastPlayerMessage.transform.GetSiblingIndex() + 1);
-            lastPlayerMessage.text = "";
-        }
-
-        // Store the last player message
-        lastPlayerMessage = playerMessage;
-
-        // Instantiate the NPC's message prefab
-        GameObject npcMessageObject = Instantiate(npcTextPrefab.gameObject, content);
-        TMP_Text npcMessage = npcMessageObject.GetComponent<TMP_Text>();
-
-        // Set the NPC's message text
-        string npcMessageText = string.Format("<color=red>{0}: </color>{1}", npcName, GenerateNPCResponse());
-        npcMessage.text = npcMessageText;
-
-        // Set the NPC message's position to be below the last NPC message
-        if (lastNpcMessage != null)
-        {
-            npcMessageObject.transform.SetSiblingIndex(lastNpcMessage.transform.GetSiblingIndex() + 1);
-            lastNpcMessage.text = "";
-
-        }
-
-        // Store the last NPC message
-        lastNpcMessage = npcMessage;
-
-        // Clear the input field
-        inputField.text = "";
     }
 
     public void cancelInputs()
     {
         chatWindow_.Hide(); // Hide the input window
-
-        // Clear the Player and NPC text Messages
-        lastPlayerMessage.text = "";
-        lastNpcMessage.text = "";
     }
 
     private string GenerateNPCResponse()

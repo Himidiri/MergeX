@@ -17,6 +17,9 @@ public class NPCResponse : MonoBehaviour
     public string name;
     public string welcomeMessage;
     public bool loading = false;
+    //Predefine
+    public List<string> predefinedQuestions;
+
 
     public IEnumerator GenerateResponse(string query)
     {
@@ -45,6 +48,16 @@ public class NPCResponse : MonoBehaviour
         }
         request.Dispose();
         loading = false;
+    }
+
+    //Method
+    public void PredefinedUserInputs(int index)
+    {
+        if (index >= 0 && index < predefinedQuestions.Count)
+        {
+            string selectedQuestion = predefinedQuestions[index];
+            StartCoroutine(GenerateResponse(selectedQuestion));
+        }
     }
 }
 
