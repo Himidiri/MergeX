@@ -6,7 +6,6 @@ using UnityEngine.Networking;
 using Unity.Collections;
 using System;
 
-
 public class NPCResponse : MonoBehaviour
 {
     string baseUrl = "http://localhost:5000/";
@@ -17,7 +16,6 @@ public class NPCResponse : MonoBehaviour
     public string name;
     public string welcomeMessage;
     public bool loading = false;
-    // public Dictionary<string, string> predefineQuestion = new Dictionary<string, string>();
     public List<PredefineQuestion> predefineQuestion;
 
 

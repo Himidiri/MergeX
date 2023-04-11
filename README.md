@@ -28,7 +28,7 @@ To install and run the project locally, follow these steps:
     docker run -p 5001:5000 ghcr.io/himidiri/mergex/mergex-ai:latest
     ```
 4. Open the Unity project in Unity 2021.3 or later.
-5. Navigate to the `ChatBubble.cs` script in the project hierarchy and update the `apiEndpoint` variable to the IP address and port of the backend API endpoint.
+5. Navigate to the `NPCResponse.cs` script in the project hierarchy and update the `apiEndpoint` variable to the IP address and port of the backend API endpoint.
 6. Run the Unity project in the Unity Editor or build and run the game.
 7. Interact with the NPCs in the game to engage in open and unbound conversations using the NLP-powered AI.
 

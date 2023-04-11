@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Login Account
+  m_text: Sign Up
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -536,7 +536,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -161.79126, y: 0, z: -98.05542, w: 0}
+  m_margin: {x: -156.66562, y: 0, z: -91.22119, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -588,7 +588,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 46}
-  m_SizeDelta: {x: 400, y: 55}
+  m_SizeDelta: {x: 370, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &210029306
 MonoBehaviour:
@@ -1043,7 +1043,7 @@ GameObject:
   - component: {fileID: 349099228}
   - component: {fileID: 349099227}
   m_Layer: 5
-  m_Name: Save
+  m_Name: Login
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1113,7 +1113,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 349099228}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 393455875}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &349099228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1939,6 +1951,7 @@ GameObject:
   - component: {fileID: 1086369545}
   - component: {fileID: 1086369547}
   - component: {fileID: 1086369546}
+  - component: {fileID: 1086369548}
   m_Layer: 5
   m_Name: Login
   m_TagString: Untagged
@@ -1969,7 +1982,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -1, y: 23}
-  m_SizeDelta: {x: 500, y: 450}
+  m_SizeDelta: {x: 450, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1086369546
 MonoBehaviour:
@@ -2009,6 +2022,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1086369544}
   m_CullTransparentMesh: 1
+--- !u!114 &1086369548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086369544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 071869294d52db347be04ae0b1d8c9b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Login: {fileID: 1086369544}
+  username: {fileID: 210029306}
+  password: {fileID: 1695430591}
 --- !u!1 &1270945922
 GameObject:
   m_ObjectHideFlags: 0
@@ -2157,7 +2185,7 @@ GameObject:
   - component: {fileID: 1272101613}
   - component: {fileID: 1272101612}
   m_Layer: 5
-  m_Name: LoginAccount
+  m_Name: SignUpAccount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2181,8 +2209,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 504, y: -42}
-  m_SizeDelta: {x: 330, y: 70}
+  m_AnchoredPosition: {x: 600, y: -42}
+  m_SizeDelta: {x: 250, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1272101612
 MonoBehaviour:
@@ -2782,8 +2810,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 504, y: 109}
-  m_SizeDelta: {x: 330, y: 70}
+  m_AnchoredPosition: {x: 600, y: 109}
+  m_SizeDelta: {x: 250, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1482655932
 MonoBehaviour:
@@ -2829,10 +2857,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 393455875}
-        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 3
+      - m_Target: {fileID: 1086369548}
+        m_TargetAssemblyTypeName: LoginAccount, Assembly-CSharp
+        m_MethodName: ShowLoginWindow
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2994,7 +3022,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -42}
-  m_SizeDelta: {x: 400, y: 55}
+  m_SizeDelta: {x: 370, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1695430591
 MonoBehaviour:
